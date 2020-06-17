@@ -27,5 +27,7 @@ elseif (${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
     target_compile_options(lrcalc PRIVATE /W3)
 endif ()
 
+set_property(TARGET lrcalc PROPERTY POSITION_INDEPENDENT_CODE ON)
+
 # IDEs should put the headers in a nice place
 source_group(TREE "${PROJECT_SOURCE_DIR}/include" PREFIX "Header Files" FILES ${HEADER_LIST})
