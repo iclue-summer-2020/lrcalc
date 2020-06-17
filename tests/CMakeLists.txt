@@ -1,15 +1,13 @@
 file(GLOB SOURCE_LIST CONFIGURE_DEPENDS
         "${LRCalc_SOURCE_DIR}/tests/*.h"
-        "${LRCalc_SOURCE_DIR}/tests/*.hpp"
-        "${LRCalc_SOURCE_DIR}/tests/*.cc"
-        "${LRCalc_SOURCE_DIR}/tests/*.cpp")
+        "${LRCalc_SOURCE_DIR}/tests/*.c")
 
 # This target runs all of the tests.
 # Make sure CATCH_CONFIG_MAIN is only defined in one test file.
 add_executable(test-lrcalc ${SOURCE_LIST})
 
 # We're using C++17 in the test
-target_compile_features(test-lrcalc PRIVATE cxx_std_17)
+# target_compile_features(test-lrcalc PRIVATE cxx_std_17)
 
 # Should be linked to the main library, as well as the Catch2 testing library
 target_link_libraries(test-lrcalc PRIVATE lrcalc catch2)
@@ -22,8 +20,8 @@ add_test(NAME test-lrcalc COMMAND test-lrcalc) # Command can be a target
 set_target_properties(test-lrcalc PROPERTIES FOLDER iclue)
 
 # Cross-platform compiler lints
-if (${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang"
-        OR ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
+if (${CMAKE_C_COMPILER_ID} STREQUAL "Clang"
+        OR ${CMAKE_C_COMPILER_ID} STREQUAL "GNU")
     target_compile_options(test-lrcalc PRIVATE
             -Wall
             -Wextra
@@ -35,7 +33,7 @@ if (${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang"
             -Wpedantic
             -pedantic
             -pedantic-errors)
-elseif (${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
+elseif (${CMAKE_C_COMPILER_ID} STREQUAL "MSVC")
     target_compile_options(test-lrcalc PRIVATE
             /W3)
 endif ()

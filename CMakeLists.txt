@@ -6,7 +6,7 @@ endif ()
 project(LRCalc
         VERSION 1.0
         DESCRIPTION "Calculate LR Coefficients"
-        LANGUAGES CXX)
+        LANGUAGES C)
 
 
 # Optionally set things like CMAKE_CXX_STANDARD, CMAKE_POSITION_INDEPENDENT_CODE here
@@ -32,15 +32,6 @@ elseif(CMAKE_COMPILER_IS_GNUCXX)
   message("Building with lcov Code Coverage Tools")
   set(CMAKE_CXX_FLAGS "--coverage")
 endif()
-
-# Docs only available if this is the main app
-find_package(Doxygen)
-if(Doxygen_FOUND)
-    add_subdirectory(docs)
-else()
-    message(STATUS "Doxygen not found, not building docs")
-endif()
-
 
 # FetchContent added in CMake 3.11, downloads during the configure step
 include(FetchContent)

@@ -1,10 +1,10 @@
 add_executable(lrcalc-bin lrcalc.c)
-target_compile_features(lrcalc-bin PRIVATE cxx_std_17)
+# target_compile_features(lrcalc-bin PRIVATE cxx_std_17)
 target_link_libraries(lrcalc-bin PRIVATE lrcalc)
 
 # Cross-platform compiler lints
-if (${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang"
-        OR ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
+if (${CMAKE_C_COMPILER_ID} STREQUAL "Clang"
+        OR ${CMAKE_C_COMPILER_ID} STREQUAL "GNU")
     target_compile_options(lrcalc-bin PRIVATE
             -Wall
             -Wextra
@@ -16,7 +16,7 @@ if (${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang"
             -Wpedantic
             -pedantic
             -pedantic-errors)
-elseif (${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
+elseif (${CMAKE_C_COMPILER_ID} STREQUAL "MSVC")
     target_compile_options(lrcalc-bin PRIVATE
             /W3)
 endif ()
@@ -32,12 +32,12 @@ add_custom_command(
 
 # Same for apps/schubmult.c.
 add_executable(schubmult-bin schubmult.c)
-target_compile_features(schubmult-bin PRIVATE cxx_std_17)
+# target_compile_features(schubmult-bin PRIVATE cxx_std_17)
 target_link_libraries(schubmult-bin PRIVATE lrcalc)
 
 # Cross-platform compiler lints
-if (${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang"
-        OR ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
+if (${CMAKE_C_COMPILER_ID} STREQUAL "Clang"
+        OR ${CMAKE_C_COMPILER_ID} STREQUAL "GNU")
     target_compile_options(schubmult-bin PRIVATE
             -Wall
             -Wextra
@@ -49,7 +49,7 @@ if (${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang"
             -Wpedantic
             -pedantic
             -pedantic-errors)
-elseif (${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
+elseif (${CMAKE_C_COMPILER_ID} STREQUAL "MSVC")
     target_compile_options(schubmult-bin PRIVATE
             /W3)
 endif ()
