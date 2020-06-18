@@ -158,7 +158,7 @@ typedef struct {
 
 #define hash_next(itr) \
   ((((itr).i = (itr).s->elts[(itr).i].next) == _S_END) \
-   ? _hash_next(&(itr)) : 0)
+   ? _hash_next(&(itr)) : (void)0)
 
 void _hash_first(hashtab *s, hash_itr *itr);
 void _hash_next(hash_itr *itr);
